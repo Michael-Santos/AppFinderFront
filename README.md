@@ -7,7 +7,8 @@ Projeto criado com o objetivo de conhecer e praticar conceitos de React e conhec
 - [x] Apresentar lista de consultas já feitas
 - [x] Lista imóveis de uma consulta
 - [x] Plotar mapa com os imóveis de uma consulta
-- [ ] Plotar marcadores personalizados com informações do imóvel
+- [x] Plotar marcadores personalizados com informações do imóvel
+- [ ] Exibir Popups com informações basicas do imóvel
 - [ ] Criar consulta de imóveis
 - [ ] Criar filtros personalizados
 - [ ] Remover consultas
