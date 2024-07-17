@@ -1,5 +1,5 @@
+import Breadcrumb from '@/components/Breadcrumb';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
-
 
 export default function RootLayout({
   children,
@@ -15,11 +15,12 @@ export default function RootLayout({
             padding: "1rem"
           }
         }>
-        
         <FmdGoodIcon />Japp Finder
-        
         </header>
+        <Breadcrumb />
+
         <main>{children}</main>
+        
         <footer style={
           {
             backgroundColor: "lightblue",

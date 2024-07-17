@@ -1,4 +1,4 @@
-import MapCanvas from '../../../../components/mapCanvas'
+import MapCanvas from '../../../../components/MapCanvas'
 import { Imovel } from '@/interfaces/Imovel'
 
 async function getData(consultaId: string) : Promise<Imovel[]> {
