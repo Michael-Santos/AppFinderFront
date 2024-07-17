@@ -1,25 +1,35 @@
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
+
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html>
       <body>
-        {/* Layout UI */}
         <header style={
           {
             backgroundColor: "lightblue",
             padding: "1rem"
           }
-        } >This is the header</header>
+        }>
+        
+        <FmdGoodIcon />Japp Finder
+        
+        </header>
         <main>{children}</main>
         <footer style={
           {
-            backgroundColor: "ghostwhite",
-            padding: "1rem"
+            backgroundColor: "lightblue",
+            padding: "2rem",
+            position: "fixed",
+            bottom: 0,
+            width: "100%"
           }
-        } >This is the footer</footer>
+        } >
+        </footer>
       </body>
     </html>
   )
