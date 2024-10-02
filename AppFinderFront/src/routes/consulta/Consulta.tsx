@@ -1,11 +1,13 @@
+import { useParams } from "react-router";
 import { Imovel } from "../../interfaces/Imovel";
 import { useEffect, useState } from "react";
 
 const Consulta = () => {
     const [imoveis, setImoveis] = useState<Imovel[]>(); 
+    const { id }  = useParams();
 
     useEffect(() => {
-        fetch('http://localhost:8080/Property')
+        fetch(`http://localhost:8080/Query/${id}`)
         .then((response) => {
             return response.json()
         })
@@ -21,18 +23,20 @@ const Consulta = () => {
             <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Cidade</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">Tamanho</th>
+                    <th scope="col">Latitude</th>
+                    <th scope="col">Longitude</th>
                 </tr>
             </thead>
             <tbody>
                 {imoveis?.map((imovel : Imovel) => (
                     <tr>
                         <td>{imovel.id}</td>
-                        <td>{imovel.bedrooms}</td>
-                        <td>{imovel.bedrooms}</td>
-                        <td>{imovel.garage}</td>
+                        <td>{imovel.address}</td>
+                        <td>{imovel.dimension}</td>
+                        <td>{imovel.latitude}</td>
+                        <td>{imovel.longitude}</td>
                     </tr>
                 ))}
             </tbody>
