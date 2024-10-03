@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import MapCanvas from "../../components/MapCanvas";
 
 const Map = () => {
-    const [imoveis, setImoveis] = useState<Imovel[]>(); 
+    const [imoveis, setImoveis] = useState<Imovel[]>([]); 
     const { id }  = useParams();
     
     useEffect(() => {
@@ -15,8 +15,8 @@ const Map = () => {
         .then((data) => {
             setImoveis(data);
         })
-    }, [imoveis]);
-
+    }, []);
+    
     return (
         <>
             <MapCanvas imoveis={imoveis} />
