@@ -6,6 +6,7 @@ import Home from './routes/home/Home';
 import App from './App';
 import Consultas from './routes/consultas/Consultas';
 import Consulta from './routes/consulta/Consulta';
+import Mapa from './routes/mapa/Mapa';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/consultas/:id",
         element: <Consulta />
+      },
+      {
+        path: "consultas/:id/mapa",
+        element: <Mapa />
       }
     ]
   },
