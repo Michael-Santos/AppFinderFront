@@ -4,12 +4,9 @@ import { useMemo, useState } from 'react';
 import { Imovel } from '../interfaces/Imovel';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 
-const MapCanvas = ( { imoveis,  coordinates} : {
-    imoveis : Imovel[], coordinates : number[]
+const MapCanvas = ( { imoveis,  initialCoordinates} : {
+    imoveis : Imovel[], initialCoordinates : number[]
 } ) => {
-    const [latitude, setLatitude] = useState(0)
-    const [longitude, setLongitude] = useState(0)
-
     const markers = useMemo(() => imoveis.map(imovel => (
     <Marker key={imovel.id}
         longitude={Number(imovel.longitude)}
@@ -18,22 +15,19 @@ const MapCanvas = ( { imoveis,  coordinates} : {
     </Marker>)
     ), [imoveis]);
 
-    console.log(`Num imóveis: ${imoveis.length}`)
-
-    return (
-    <Map
-        mapboxAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
-        initialViewState={{
-            latitude: coordinates[0] / imoveis.length,
-            longitude: coordinates[1]  / imoveis.length,
-            zoom: 13
-        }}
-        style={{width: 600, height: 400}}
-        mapStyle="mapbox://styles/mapbox/streets-v12"
-    >
-        {markers}
-    </Map>
-    )
+    return  imoveis.length > 0 && (
+        <Map
+            mapboxAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
+            initialViewState={{
+                latitude: initialCoordinates[0] / imoveis.length,
+                longitude: initialCoordinates[1]  / imoveis.length,
+                zoom: 13
+            }}
+            style={{width: 600, height: 400}}
+            mapStyle="mapbox://styles/mapbox/streets-v12"
+        >
+            {markers}
+        </Map>)    
 }
 
 export default MapCanvas
