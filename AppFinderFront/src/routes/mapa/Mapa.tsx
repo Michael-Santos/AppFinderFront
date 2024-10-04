@@ -15,18 +15,20 @@ const Map = () => {
         })
         .then((data : Imovel[]) => {
             const imoveisfiltered = data.filter(_ => _.longitude != null && _.latitude !== null);
-            setInitialCoordinates(imoveisfiltered.reduce((previousValue : number[], currentValue : Imovel) => {
-                console.log(`Latitude ${currentValue.latitude} Longitude: ${currentValue.longitude}`)
-                previousValue[0] = parseFloat(currentValue.latitude) + previousValue[0]
-                previousValue[1] = parseFloat(currentValue.longitude) + previousValue[1]
-                return previousValue
-            }, [0, 0]));
-            
+            setInitialCoordinates(CalculateInitialCoordinates(imoveisfiltered));
             setImoveis(imoveisfiltered);
         })
     }, []);
 
     return <MapCanvas imoveis={imoveis} initialCoordinates={initialCoordinates} />
+}
+
+const CalculateInitialCoordinates = (imoveis : Imovel[]) => {
+    return imoveis.reduce((previousValue : number[], currentValue : Imovel) => {
+        previousValue[0] = parseFloat(currentValue.latitude) + previousValue[0]
+        previousValue[1] = parseFloat(currentValue.longitude) + previousValue[1]
+        return previousValue
+    }, [0, 0])
 }
 
 export default Map

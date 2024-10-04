@@ -21,7 +21,7 @@ const MapCanvas = ( { imoveis,  initialCoordinates} : {
             initialViewState={{
                 latitude: initialCoordinates[0] / imoveis.length,
                 longitude: initialCoordinates[1]  / imoveis.length,
-                zoom: 13
+                zoom: 11
             }}
             style={{width: 600, height: 400}}
             mapStyle="mapbox://styles/mapbox/streets-v12"
