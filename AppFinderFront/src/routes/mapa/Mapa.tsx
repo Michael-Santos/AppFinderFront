@@ -9,7 +9,7 @@ const Map = () => {
     const [initialCoordinates, setInitialCoordinates] = useState<number[]>([0, 0])
     
     useEffect(() => {
-        fetch(`http://localhost:8080/Query/${id}`)
+        fetch(`${import.meta.env.BASE_URL}/Query/${id}`)
         .then((response) => {
             return response.json()
         })

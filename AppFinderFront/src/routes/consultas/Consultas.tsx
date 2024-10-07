@@ -5,7 +5,7 @@ const Consultas = () => {
     const [consultas, setConsultas] = useState<Consulta[]>(); 
     
     useEffect(() => {
-        fetch(`http://localhost:8080/Query`)
+        fetch(`${import.meta.env.BASE_URL}/Query`)
         .then((response) => {
             return response.json()
         })

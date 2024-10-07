@@ -15,7 +15,7 @@ const MapCanvas = ( { imoveis,  initialCoordinates} : {
     </Marker>)
     ), [imoveis]);
 
-    return  imoveis.length > 0 && (
+    return imoveis.length > 0 && (
         <Map
             mapboxAccessToken={import.meta.env.VITE_MAPBOX_TOKEN}
             initialViewState={{
@@ -23,7 +23,7 @@ const MapCanvas = ( { imoveis,  initialCoordinates} : {
                 longitude: initialCoordinates[1]  / imoveis.length,
                 zoom: 11
             }}
-            style={{width: 600, height: 400}}
+            style={{width: 600, height: 400}} 
             mapStyle="mapbox://styles/mapbox/streets-v12"
         >
             {markers}
