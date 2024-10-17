@@ -9,13 +9,13 @@ const Map = () => {
     const [initialCoordinates, setInitialCoordinates] = useState<number[]>([0, 0])
     
     useEffect(() => {
-        fetch(`${import.meta.env.BASE_URL}/Query/${id}`)
+        fetch(`${import.meta.env.VITE_BASE_URI}/Query/${id}`)
         .then((response) => {
             return response.json()
         })
         .then((data : Imovel[]) => {
             const imoveisfiltered = data.filter(_ => _.longitude != null && _.latitude !== null);
-            setInitialCoordinates(CalculateInitialCoordinates(imoveisfiltered));
+            setInitialCoordinates(calculateInitialCoordinates(imoveisfiltered));
             setImoveis(imoveisfiltered);
         })
     }, []);
@@ -23,7 +23,7 @@ const Map = () => {
     return <MapCanvas imoveis={imoveis} initialCoordinates={initialCoordinates} />
 }
 
-const CalculateInitialCoordinates = (imoveis : Imovel[]) => {
+const calculateInitialCoordinates = (imoveis : Imovel[]) => {
     return imoveis.reduce((previousValue : number[], currentValue : Imovel) => {
         previousValue[0] = parseFloat(currentValue.latitude) + previousValue[0]
         previousValue[1] = parseFloat(currentValue.longitude) + previousValue[1]
