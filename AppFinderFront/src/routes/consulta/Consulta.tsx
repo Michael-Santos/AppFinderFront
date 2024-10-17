@@ -1,13 +1,14 @@
 import { useParams } from "react-router";
 import { Imovel } from "../../interfaces/Imovel";
 import { useEffect, useState } from "react";
+import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
 
 const Consulta = () => {
     const [imoveis, setImoveis] = useState<Imovel[]>(); 
     const { id }  = useParams();
 
     useEffect(() => {
-        fetch(`${import.meta.env.BASE_URL}/Query/${id}`)
+        fetch(`${import.meta.env.VITE_BASE_URI}/Query/${id}`)
         .then((response) => {
             return response.json()
         })
@@ -18,31 +19,32 @@ const Consulta = () => {
     }, []);
 
     return (
-        <>
-            <table>
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Endereço</th>
-                    <th scope="col">Tamanho</th>
-                    <th scope="col">Latitude</th>
-                    <th scope="col">Longitude</th>
-                </tr>
-            </thead>
-            <tbody>
-                {imoveis?.map((imovel : Imovel) => (
-                    <tr>
-                        <td>{imovel.id}</td>
-                        <td>{imovel.address}</td>
-                        <td>{imovel.dimension}</td>
-                        <td>{imovel.latitude}</td>
-                        <td>{imovel.longitude}</td>
-                    </tr>
+        <TableContainer component={Paper}>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Id</TableCell>
+                        <TableCell align="left">Endereço</TableCell>
+                        <TableCell align="left">Dimensão</TableCell>
+                        <TableCell align="left">Coordenadas</TableCell>
+                        <TableCell align="left">Preço</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                {imoveis?.map((imovel: Imovel) => (
+                    <TableRow key={imovel.id}>
+                        <TableCell component="th" scope="row">
+                            {imovel.id}
+                        </TableCell>
+                        <TableCell align="left">{imovel.address}</TableCell>
+                        <TableCell align="left">{imovel.dimension}</TableCell>
+                        <TableCell align="left">{imovel.latitude ? imovel.longitude + ' , ' + imovel.longitude : ''}</TableCell>
+                        <TableCell align="left">{imovel.price}</TableCell>
+                    </TableRow>
                 ))}
-            </tbody>
-            </table>
-        </>
-                
+                </TableBody>
+            </Table>
+        </TableContainer>                
     )
 }
 
